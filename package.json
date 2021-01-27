@@ -1,0 +1,30 @@
+{
+  "name": "js-catch-mind",
+  "version": "1.0.0",
+  "description": "Realtime Drawing Game built with Socket.io, Gulp and Node",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sounmind/js-catch-mind.git"
+  },
+  "author": "leesche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sounmind/js-catch-mind/issues"
+  },
+  "homepage": "https://github.com/sounmind/js-catch-mind#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.0"
+  },
+  "scripts": {
+    "dev:server": "nodemon --exec babel-node src/server"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "nodemon": "^2.0.7"
+  }
+}
