@@ -1,0 +1,1 @@
+hello I am index.js in src/static
