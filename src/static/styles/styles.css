@@ -1,0 +1,7 @@
+body {
+  background-color: red;
+  position: -webkit-sticky;
+  position: sticky;
+  color: #00f;
+  display: flex;
+}
