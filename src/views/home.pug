@@ -6,6 +6,10 @@ html(lang="en")
         link(rel="stylesheet", href="/styles/styles.css")
         title Catch Mind
     body
-        h1 Hello
+        .loginBox
+            form#jsLogin
+                input(placeholder="what's your nickname?", type ="text")
+        .gameContainer#jsGame
+            h1 you're logged in 
         script(src="/socket.io/socket.io.js")
         script(src="/js/main.js")
