@@ -6,8 +6,8 @@ const NICKNAME = "nickname";
 const $loginForm = document.querySelector("#jsLogin");
 
 const logIn = (nickname) => {
-  const socket = io("/");
-  socket.emit(window.events.setNickname, { nickname });
+  window.socket = io("/");
+  window.socket.emit(window.events.setNickname, { nickname });
 };
 
 if (!nickname) {
