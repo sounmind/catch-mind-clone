@@ -7,7 +7,7 @@ const $loginForm = document.querySelector("#jsLogin");
 
 const logIn = (nickname) => {
   const socket = io("/");
-  socket.emit("setNickname", { nickname });
+  socket.emit(window.events.setNickname, { nickname });
 };
 
 if (!nickname) {
@@ -23,7 +23,7 @@ const handleFormSubmit = (event) => {
   const { value } = input;
   input.value = ""; // reset
   localStorage.setItem(NICKNAME, value);
-  body.className = LOGGED_IN;
+  $body.className = LOGGED_IN;
   logIn(value);
 };
 
