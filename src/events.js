@@ -1,5 +1,6 @@
 const events = {
-  setNickname: "setNickname",
+    setNickname: "setNickname",
+    notifyNewUser: "notifyNewUser"
 };
 
 export default events;

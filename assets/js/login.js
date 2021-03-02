@@ -1,3 +1,5 @@
+import { initSockets } from "./sockets";
+
 const $body = document.querySelector("body");
 const nickname = localStorage.getItem("nickname");
 const LOGGED_OUT = "loggedOut";
@@ -6,8 +8,9 @@ const NICKNAME = "nickname";
 const $loginForm = document.querySelector("#jsLogin");
 
 const logIn = (nickname) => {
-  window.socket = io("/");
-  window.socket.emit(window.events.setNickname, { nickname });
+  const socket = io("/");
+  socket.emit(window.events.setNickname, { nickname });
+  initSockets(socket);
 };
 
 if (!nickname) {
