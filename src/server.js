@@ -2,6 +2,7 @@ import { join } from "path";
 import express from "express";
 import socketIO from "socket.io";
 import logger from "morgan";
+import socketController from "./socketController";
 
 const PORT = 4000;
 const app = express();
@@ -19,17 +20,4 @@ const handleListening = () => {
 const server = app.listen(PORT, handleListening);
 
 const io = socketIO(server);
-io.on("connection", (socket) => {
-  socket.on("newMessage", handleNewMessage.bind(null, socket));
-});
-
-const handleNewMessage = (socket, { newMessage }) => {
-  console.log("new mewssage received:", newMessage);
-  socket.broadcast.emit("messageNotification", {
-    newMessage,
-    nickname: socket.nickname || "annonymous",
-  });
-  socket.on("setNickName", ({ nickname }) => {
-    socket.nickname = nickname;
-  });
-};
+io.on("connection", (socket) => socketController(socket));
