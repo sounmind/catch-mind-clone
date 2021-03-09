@@ -1,10 +1,11 @@
-const $notifications = document.querySelector("#jsNotification");
+const $body = document.querySelector("body");
 
 const alertNotification = (text, color) => {
   const $notification = document.createElement("div");
   $notification.textContent = text;
   $notification.style.backgroundColor = color;
-  $notifications.appendChild($notification);
+  $notification.className = "notification";
+  $body.appendChild($notification);
 };
 
 export const handleNewUser = ({ nickname }) => {
