@@ -1,13 +1,16 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+"use strict";var messages=document.getElementById("jsMessages"),sendMessage=document.getElementById("jsSendMessage"),appendMessage=function(e,s){var n=document.createElement("li");n.innerHTML='\n        <span class="author '.concat(s?"out":"self",' ">\n        ').concat(s||"You",":</span> ").concat(e,"\n    "),messages.appendChild(n)},handleSendMessage=function(e){e.preventDefault();var s=sendMessage.querySelector("input"),n=s.value;s.value="",appendMessage(n)};sendMessage&&sendMessage.addEventListener("submit",handleSendMessage);
+
+},{}],2:[function(require,module,exports){
 "use strict";var _sockets=require("./sockets"),$body=document.querySelector("body"),nickname=localStorage.getItem("nickname"),LOGGED_OUT="loggedOut",LOGGED_IN="loggedIn",NICKNAME="nickname",$loginForm=document.querySelector("#jsLogin"),logIn=function(e){var o=io("/");o.emit(window.events.setNickname,{nickname:e}),(0,_sockets.initSockets)(o)};nickname?($body.className=LOGGED_IN,logIn(nickname)):$body.className=LOGGED_OUT;var handleFormSubmit=function(e){e.preventDefault();var o=$loginForm.querySelector("input"),n=o.value;o.value="",localStorage.setItem(NICKNAME,n),$body.className=LOGGED_IN,logIn(n)};$loginForm&&$loginForm.addEventListener("submit",handleFormSubmit);
 
-},{"./sockets":4}],2:[function(require,module,exports){
-"use strict";require("./sockets"),require("./login"),require("./notifications");
+},{"./sockets":5}],3:[function(require,module,exports){
+"use strict";require("./sockets"),require("./login"),require("./notifications"),require("./chat");
 
-},{"./login":1,"./notifications":3,"./sockets":4}],3:[function(require,module,exports){
+},{"./chat":1,"./login":2,"./notifications":4,"./sockets":5}],4:[function(require,module,exports){
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.handleDisconnectedUser=exports.handleNewUser=void 0;var $body=document.querySelector("body"),alertNotification=function(e,n){var t=document.createElement("div");t.textContent=e,t.style.backgroundColor=n,t.className="notification",$body.appendChild(t)},handleNewUser=function(e){var n=e.nickname;alertNotification("".concat(n," just joined!"),"yellowgreen")};exports.handleNewUser=handleNewUser;var handleDisconnectedUser=function(e){var n=e.nickname;alertNotification("".concat(n," just left"),"red")};exports.handleDisconnectedUser=handleDisconnectedUser;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.initSockets=exports.updateSocket=exports.getSocket=void 0;var _notifications=require("./notifications"),getSocket=function(){return socket};exports.getSocket=getSocket;var socket=null,updateSocket=function(e){socket=e};exports.updateSocket=updateSocket;var initSockets=function(e){var t=window.events;updateSocket(e),socket.on(t.notifyNewUser,_notifications.handleNewUser),socket.on(t.disconnected,_notifications.handleDisconnectedUser)};exports.initSockets=initSockets;
 
-},{"./notifications":3}]},{},[2]);
+},{"./notifications":4}]},{},[3]);
